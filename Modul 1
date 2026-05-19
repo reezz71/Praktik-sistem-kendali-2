@@ -1,0 +1,125 @@
+>> % Modul 1 STEP RESPONSE PADA SISTEM KENDALI
+>> % 1.1
+>> sys=tf([1 2],[1 4 3]);
+>> step(sys)
+>> step([1 2],[1 4 3])
+>> %
+>> sys=tf([1 2],[1 4 3]);
+>> [y,t]=step(sys);
+>> plot(t,y);
+>> %
+>> sys=tf([1 2],[1 4 3]);
+>> step(sys,8);
+>> step([1 2],[1 4 3],8)
+>> %
+>> sys=tf([1 2],[1 4 3]);
+>> [y,t]=step(sys,8);
+>> plot(t,y);
+>> % 1.2
+>> sys = tf(4,[1 2 10]);
+>> t = 0:0.05:5;
+>> step(sys,t);
+>> % 1.3
+>> sys = zpk(-1,[-0.2+3j,-0.2-3j],1) * tf([1 1],[1 0.05])
+
+sys =
+ 
+            (s+1)^2
+  ----------------------------
+  (s+0.05) (s^2 + 0.4s + 9.04)
+ 
+Continuous-time zero/pole/gain model.
+Model Properties
+>> step(sys)
+>> % 1.5
+>> sys = zpk(-1,[-0.2+3j,-0.2-3j],1) * tf([1 1],[1 0.05])
+
+sys =
+ 
+            (s+1)^2
+  ----------------------------
+  (s+0.05) (s^2 + 0.4s + 9.04)
+ 
+Continuous-time zero/pole/gain model.
+Model Properties
+>> % step(sys)
+>> step(sys,15)
+>> % 1.6
+>> sys = zpk(-1,[-0.2+3j,-0.2-3j],1) * tf([1 1],[1 0.05])
+
+sys =
+ 
+            (s+1)^2
+  ----------------------------
+  (s+0.05) (s^2 + 0.4s + 9.04)
+ 
+Continuous-time zero/pole/gain model.
+Model Properties
+>> % step(sys)
+>> % step(sys,15)
+>> t = 20:0.2:120;
+>> step(sys,t)
+>> % 1.7
+>> A = [-0.5572,-0.7814;0.7814,0];
+>> B = [1,-1;0,2];
+>> C = [1.9691,6.4493];
+>> sys = ss(A,B,C,0);
+>> step(sys)
+>> tf(sys)
+
+ans =
+ 
+  From input 1 to output:
+      1.969 s + 5.039
+  -----------------------
+  s^2 + 0.5572 s + 0.6106
+ 
+  From input 2 to output:
+     10.93 s - 0.9297
+  -----------------------
+  s^2 + 0.5572 s + 0.6106
+ 
+Continuous-time transfer function.
+Model Properties
+>> % 
+>> A = [-1 -1; 6.5 0];
+>> B = [1 1;1 0];
+>> C = [1 0; 0 1];
+>> D=[0 0; 0 0];
+>> % sys = ss(A,B,C,D);
+>> % step(sys)
+>> % tf(sys)
+>> step(A,B,C,D)
+>> %
+>> A = [-1 -1; 6.5 0]; B = [1 1;1 0]; C = [1 0; 0 1]; D=[0 0; 0 0];
+>> step(A,B,C,D,1)
+>> figure;
+>> step(A,B,C,D,2)
+>> % 1.8
+>> A = [1.6 -0.7; 1 0];
+>> B = [0.5; 0];
+>> C = [0.1 0.1];
+>> D = 0;
+>> sys = ss(A,B,C,D,0.2);
+>> % 0.2 is the sampling period
+>> step(sys)
+>> % 1.9
+>> sys = tf([1 5 5],[1 1.65 5 6.5 2]);
+>> step(sys)
+>> S = stepinfo(sys)
+
+S = 
+
+  struct with fields:
+
+         RiseTime: 3.8456
+    TransientTime: 27.9762
+     SettlingTime: 27.9762
+      SettlingMin: 2.0689
+      SettlingMax: 2.6873
+        Overshoot: 7.4915
+       Undershoot: 0
+             Peak: 2.6873
+         PeakTime: 8.0530
+
+>> 
