@@ -1,0 +1,27 @@
+>> % MODUL 2 IMPULSE RESPONSE PADA SISTEM KENDALI
+>> % 2.1
+>> sys=tf([1 2],[1 4 3]);
+>> impulse(sys)
+>> %
+>> A = [-0.5572,-0.7814;0.7814,0];
+>> B = [1,-1;0,2];
+>> C = [1.9691,6.4493];
+>> sys = ss(A,B,C,0);
+>> impulse(sys)
+>> tf(sys)
+
+ans =
+ 
+  From input 1 to output:
+      1.969 s + 5.039
+  -----------------------
+  s^2 + 0.5572 s + 0.6106
+ 
+  From input 2 to output:
+     10.93 s - 0.9297
+  -----------------------
+  s^2 + 0.5572 s + 0.6106
+ 
+Continuous-time transfer function.
+Model Properties
+>> 
