@@ -1,0 +1,70 @@
+>> % MODUL 4 SISTEM ORDE PERTAMA DAN ORDE KEDUA
+>> % 4.1
+>> leg=[];
+>> for a=1:5;
+sys=zpk([],[-a],a);
+hold all % or hold on
+step(sys);
+line=horzcat('poles= -',num2str(a));
+leg=strvcat(leg,line);
+end
+>> legend(leg)
+>> % 4.2
+>> t=[0:0.1:12]; num=1; % t=[0:0.1:120];
+>> num=1;
+>> zeta1=0.1; den1=[1 2*zeta1 1];
+>> zeta2=0.2; den2=[1 2*zeta2 1];
+>> zeta3=0.4; den3=[1 2*zeta3 1];
+>> zeta4=0.7; den4=[1 2*zeta4 1];
+>> zeta5=1.0; den5=[1 2*zeta5 1];
+>> zeta6=2.0; den6=[1 2*zeta6 1];
+>> % [y1,x,t]=step(num,den1,t);
+>> [y2,x,t]=step(num,den2,t);
+>> % [y3,x,t]=step(num,den3,t);
+>> [y4,x,t]=step(num,den4,t);
+>> % [y5,x,t]=step(num,den5,t);
+>> [y6,x,t]=step(num,den6,t);
+>> [y1]=step(num,den1,t);
+>> [y2]=step(num,den2,t);
+>> [y3]=step(num,den3,t);
+>> [y4]=step(num,den4,t);
+>> [y5]=step(num,den5,t);
+>> [y6]=step(num,den6,t);
+>> plot(t,y1,t,y2,t,y3,t,y4,t,y5,t,y6);
+>> xlabel('w_n * t');
+>> ylabel('y(t)');
+>> legend('zeta=0.1','zeta=0.2','zeta=0.4','zeta=0.7','zeta=1.0','zeta=2.0');
+>> %
+>> plot(t,y1,t,y2,t,y3,t,y4,t,y5,t,y6);
+>> xlabel('w_n * t');
+>> ylabel('y(t)');
+>> legend('zeta=0.1','zeta=0.2','zeta=0.4','zeta=0.7','zeta=1.0','zeta=2.0');
+>> figure;
+>> [y1]=impulse(num,den1,t);
+>> [y2]=impulse(num,den2,t);
+>> [y3]=impulse(num,den3,t);
+>> [y4]=impulse(num,den4,t);
+>> [y5]=impulse(num,den5,t);
+>> [y6]=impulse(num,den6,t);
+>> plot(t,y1,t,y2,t,y3,t,y4,t,y5,t,y6);
+>> xlabel('w_n * t');
+>> ylabel('y(t)');
+>> legend('zeta=0.1','zeta=0.2','zeta=0.4','zeta=0.7','zeta=1.0','zeta=2.0');
+>> clear
+>> % 4.3
+>> leg=[ ];
+>> for w=1:8
+sys=zpk([ ],[-w+2*w*i, -w-2*w*i],abs(w+2*w*i)^2);
+figure(1)
+hold all
+step(sys)
+% In order to create the legend string:
+line=horzcat('poles= -',num2str(w), '+-', num2str(2*w), 'i');
+leg=strvcat(leg,line);
+legend(leg)
+figure(2)
+hold all
+pzmap(sys)
+% pause
+end
+>> 
